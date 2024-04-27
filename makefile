@@ -1,47 +1,33 @@
-# CC = gcc
-# CFLAGS = -Wall -Wextra -Werror
-# SRC_PATH = ./src/
-# SRCS = $(SRC_PATH)main.c
-# OBJ = $(SRCS:.c=.o)
-# NAME = so_long
-
-# all: $(NAME)
-
-# $(NAME): $(OBJ)
-# 	$(CC) $(OBJ) -Lmlx_linux -lmlx_Linux -L/usr/lib -Iminilibx-linux -lXext -lX11 -lm -lz -o $(NAME)
-
-
-# %.o: %.c
-# 	$(CC) -Wall -Wextra -Werror -I/usr/include -Iminilibx-linux -O3 -c $< -o $@
-
-# clean:
-# 	rm -f $(OBJ)
-
-# fclean: clean
-# 	rm -f $(NAME)
-
-# re: fclean all
-
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -O3 -I/usr/include -Iminilibx-linux
-LDFLAGS = -L/home/alfreire/CommonCore/so_long/minilibx-linux -lmlx -L/usr/lib -lXext -lX11 -lm -lz
+CFLAGS = -Wall -Wextra -Werror -O3 -fPIE -I/usr/include -Iminilibx-linux
+LDFLAGS = -L./minilibx-linux -lmlx -L/usr/lib -lXext -lX11 -lm -lz
 SRC_PATH = ./src/
-SRCS = $(SRC_PATH)main.c
+SRCS = $(SRC_PATH)main.c $(SRC_PATH)check_maps.c $(SRC_PATH)start.c
 OBJ = $(SRCS:.c=.o)
 NAME = so_long
+LIBFT = ./libft/libft.a
+LIBFT_INC = ./libft/libft.h
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	$(CC) $(OBJ) $(LDFLAGS) -o $(NAME)
+$(NAME): $(LIBFT) $(OBJ)
+	$(CC) $(OBJ) $(LIBFT) $(LDFLAGS) -o $(NAME)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
+$(LIBFT):
+	$(MAKE) -C ./libft
+
 clean:
 	rm -f $(OBJ)
+	$(MAKE) -C ./libft clean
 
 fclean: clean
 	rm -f $(NAME)
+	$(MAKE) -C ./libft fclean
 
 re: fclean all
+
+.PHONY: all clean re fclean
+.SILENT:

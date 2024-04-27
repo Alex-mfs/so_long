@@ -1,8 +1,16 @@
-#include "../minilibx-linux/mlx.h"
-#include <X11/keysym.h>
-#include <X11/X.h>
-#include <stdlib.h>
-#include <stdio.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alfreire <alfreire@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/27 17:04:06 by alfreire          #+#    #+#             */
+/*   Updated: 2024/04/27 17:04:08 by alfreire         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../include/so_long.h"
 
 // if (all_collected && exit_count == 1)
 // 	return (map_valid);
@@ -17,41 +25,24 @@
 // 	return map_valid;
 // return map_valid;
 
-// typedef struct s_data
-// {
-// 	void		*mlx_ptr;
-// 	void		*win_ptr;
-// 	void		*textures[5];
-// 	t_map		*map;
-// }	t_data;
-
-int	main(void)
+bool	valid_filename(char *filename)
 {
-	void	*mlx;
-	void	*win;
-	char	*relative_path = "./assets/texture.xpm";
-	int		img_width;
-	int		img_height;
+	size_t	len;
 
-	mlx = mlx_init();
-	if (!mlx)
-		return (1);
-	win = mlx_new_window(mlx, 600, 400, "window");
-	if (!win)
-		{
-			mlx_destroy_display(mlx);
-			free(mlx);
-			return (1);
-		}
-	void	*img = mlx_xpm_file_to_image(mlx, relative_path, &img_width, &img_height);
-	if (!img)
-	{
-		printf("erro ao carregar imagem.\n");
-		mlx_destroy_window(mlx, win);
-		mlx_destroy_display(mlx);
-		free(mlx);
-		return (1);
-	}
-	mlx_put_image_to_window(mlx, win, img, 100, 100);
-	mlx_loop(mlx);
+	len = ft_strlen(filename);
+	if (len < 4)
+		return (false);
+	if (ft_strnstr(filename + (len - 4), ".ber", 4) != NULL)
+		return (true);
+	else
+		return (false);
+}
+
+int	main(int ac, char **av)
+{
+	if (ac != 2)
+		return (EXIT_FAILURE);
+	if (!valid_filename(av[1]))
+		return (EXIT_FAILURE);
+	start_game(av[1]);
 }

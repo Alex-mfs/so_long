@@ -12,12 +12,12 @@
 
 typedef struct s_map
 {
-	char	*map;
-	int		colum;
-	int		lines;
-	int		colect;
-	int		player;
-	int		exit;
+	char		**map;
+	size_t		colum;
+	size_t		lines;
+	int			colect;
+	int			player;
+	int			exit;
 }	t_map;
 
 typedef struct s_player
@@ -25,9 +25,12 @@ typedef struct s_player
 	/* data */
 }	t_player;
 
+// READ MAP //
 char	read_map(const char *filename, t_map *data);
+
+// CHECK MAPS //
 void	check_map(t_map *data);
-bool	rectangular_map(char *map);
+bool	rectangular_map(t_map *map);
 
 // START //
 void	start_game(char *filename);

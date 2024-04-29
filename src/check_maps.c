@@ -6,7 +6,7 @@
 /*   By: alfreire <alfreire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 17:03:53 by alfreire          #+#    #+#             */
-/*   Updated: 2024/04/27 19:49:53 by alfreire         ###   ########.fr       */
+/*   Updated: 2024/04/29 19:28:02 by alfreire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,43 +25,56 @@
 // 	data.map = NULL;
 // }
 
-bool	rectangular_map(char *map)
+bool	rectangular_map(t_map *map)
 {
-	char	**lines;
-	int		num_columns;
-	int		i;
+	char		**lines;
+	size_t		i;
 
-	
+	lines = map->map;
+	if (lines[0])
+		map->colum = ft_strlen(lines[0]);
+	i = 0;
+	while (lines[i] != NULL)
+	{
+		if (ft_strlen(lines[i]) != map->colum)
+			return (false);
+		i++;
+	}
+	map->lines = i;
+	while (lines[i++])
+		free(lines[i]);
+	free(lines);
+	return (true);
+}
+
+bool	surrounded_map(t_map *data)
+{
+	size_t		i;
+	size_t		j;
+
+	i = 0;
+	j = 0;
+	while (data->map[i++])
+	{
+		if (i == 0 || i == data->lines)
+		{
+			j = 0;
+			while(data->map[i][j++]);
+			if (j != data->colum)
+				return (false);
+			j = 0;
+		}
+		if (j == 0 || j == data->colum)
+		{
+			
+		}
+	}
 }
 
 void	check_map(t_map *data)
 {
-	if(!rectangular_map(data->map))
-		perror("map not rectangular");                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
-}
-
-char	read_map(const char *filename, t_map *data)
-{
-	int		fd;
-	char	*tmp;
-	char	*line;
-
-	tmp = "";
-	fd = open(filename, O_RDONLY);
-	if (fd < 0)
-	{
-		perror ("error, file not found\n");
-		exit (EXIT_FAILURE);
-	}
-	line = get_next_line(fd);
-	while (line)
-	{
-		tmp = ft_strjoin(tmp, line);
-		line = get_next_line(fd);
-	}
-	close (fd);
-	data->map = tmp;
-	printf("%s", tmp);
-	free(line);
-	return (0);
+	if (!rectangular_map(data))
+		ft_putstr_fd("Error\nMap is not rectangular", 2);
+	if (!surrounded_map(data))
+		ft_putstr_fd("Error\nMap is not surrounded by walls", 2);
 }

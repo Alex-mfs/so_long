@@ -2,7 +2,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror -O3 -fPIE -I/usr/include -Iminilibx-linux
 LDFLAGS = -L./minilibx-linux -lmlx -L/usr/lib -lXext -lX11 -lm -lz
 SRC_PATH = ./src/
-SRCS = $(SRC_PATH)main.c $(SRC_PATH)check_maps.c $(SRC_PATH)start.c
+SRCS = $(SRC_PATH)main.c $(SRC_PATH)read_map.c $(SRC_PATH)check_maps.c $(SRC_PATH)start.c
 OBJ = $(SRCS:.c=.o)
 NAME = so_long
 LIBFT = ./libft/libft.a

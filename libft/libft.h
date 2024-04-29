@@ -6,7 +6,7 @@
 /*   By: alfreire <alfreire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 13:24:52 by alfreire          #+#    #+#             */
-/*   Updated: 2024/04/27 16:13:21 by alfreire         ###   ########.fr       */
+/*   Updated: 2024/04/29 18:46:48 by alfreire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 char	*get_next_line(int fd);
 size_t	ft_strclen(const char *str, int c);
 char	*ft_strjoingnl(char *s1, char *s2);
-char	*ft_strchr(const char *str, int c);
+char	*ft_strchr_gnl(const char *str, int c);
 char	*ft_strldup(const char *src, size_t len);
 
 #endif

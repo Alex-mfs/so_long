@@ -6,7 +6,7 @@
 /*   By: alfreire <alfreire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 15:32:22 by alfreire          #+#    #+#             */
-/*   Updated: 2024/04/27 16:10:35 by alfreire         ###   ########.fr       */
+/*   Updated: 2024/04/29 18:46:24 by alfreire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	*ft_strjoingnl(char *s1, char *s2)
 	return (concate);
 }
 
-char	*ft_strchr(const char *str, int c)
+char	*ft_strchr_gnl(const char *str, int c)
 {
 	int	i;
 

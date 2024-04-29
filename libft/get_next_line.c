@@ -6,7 +6,7 @@
 /*   By: alfreire <alfreire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 12:32:24 by alfreire          #+#    #+#             */
-/*   Updated: 2024/04/27 16:10:02 by alfreire         ###   ########.fr       */
+/*   Updated: 2024/04/29 18:47:18 by alfreire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char	*store_memblocks(int fd, char *memory)
 	memblock = malloc(BUFFER_SIZE + 1);
 	if (!memblock)
 		return (NULL);
-	while (bytes > 0 && !ft_strchr(memory, '\n'))
+	while (bytes > 0 && !ft_strchr_gnl(memory, '\n'))
 	{
 		bytes = read(fd, memblock, BUFFER_SIZE);
 		if (bytes == -1)

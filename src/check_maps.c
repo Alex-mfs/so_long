@@ -6,7 +6,7 @@
 /*   By: alfreire <alfreire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 17:03:53 by alfreire          #+#    #+#             */
-/*   Updated: 2024/04/29 19:28:02 by alfreire         ###   ########.fr       */
+/*   Updated: 2024/05/01 17:07:34 by alfreire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,27 +54,37 @@ bool	surrounded_map(t_map *data)
 
 	i = 0;
 	j = 0;
-	while (data->map[i++])
+
+	while (i < data->lines)
 	{
-		if (i == 0 || i == data->lines)
+		if (i == 0 || i == data->lines - 2)
 		{
 			j = 0;
-			while(data->map[i][j++]);
-			if (j != data->colum)
+			printf("\n%zu\n", data->lines);
+			printf("\n%zu\n", data->colum);
+			while(j < data->colum - 1)
+			{
+				if (data->map[i][j] != '1')
+					return (false);
+				j++;
+			}
+			ft_putstr_fd("\na\n", 1);
+		}
+		else
+			if (data->map[i][0] != '1' || data->map[i][data->colum - 1] != '1')
 				return (false);
-			j = 0;
-		}
-		if (j == 0 || j == data->colum)
-		{
-			
-		}
+		i++;
 	}
+	return (true);
 }
 
 void	check_map(t_map *data)
 {
+    int i = 0;
+    while (data->map[i++])
+        printf("%s\n", data->map[i]);
 	if (!rectangular_map(data))
 		ft_putstr_fd("Error\nMap is not rectangular", 2);
 	if (!surrounded_map(data))
-		ft_putstr_fd("Error\nMap is not surrounded by walls", 2);
+		ft_putstr_fd("Error\nMap is not fully surrounded by walls", 2);
 }

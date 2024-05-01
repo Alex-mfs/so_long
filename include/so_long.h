@@ -4,11 +4,17 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <unistd.h>
-#include <X11/keysym.h>
-#include <X11/X.h>
 #include <stdlib.h>
 #include <fcntl.h>
 #include "../libft/libft.h"
+
+# ifdef __APPLE__
+# include <Carbon/Carbon.h>
+# elif defined(__linux__)
+# include <X11/keysym.h>
+# include <X11/X.h>
+
+# endif
 
 typedef struct s_map
 {

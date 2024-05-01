@@ -6,7 +6,7 @@
 /*   By: alfreire <alfreire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 17:06:35 by alfreire          #+#    #+#             */
-/*   Updated: 2024/04/29 19:03:54 by alfreire         ###   ########.fr       */
+/*   Updated: 2024/05/01 16:55:17 by alfreire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	read_map(const char *filename, t_map *data)
 	char	*tmp;
 	char	*line;
 
-	tmp = "";
+	tmp = ft_strdup("");
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 	{
@@ -29,11 +29,13 @@ char	read_map(const char *filename, t_map *data)
 	while (line)
 	{
 		tmp = ft_strjoin(tmp, line);
+		free(line);
 		line = get_next_line(fd);
 	}
 	close (fd);
 	data->map = ft_split(tmp, '\n');
-	printf("%s", tmp);
+	// printf("%s", tmp);
 	free(line);
+	free(tmp);
 	return (0);
 }

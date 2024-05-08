@@ -16,6 +16,18 @@
 
 # endif
 
+typedef struct s_point
+{
+	int	x;
+	int	y;
+}	t_point;
+
+typedef struct s_comp
+{
+	int	colec;
+	int	exi;
+}	t_comp;
+
 typedef struct s_map
 {
 	char		**map;
@@ -24,7 +36,12 @@ typedef struct s_map
 	int			colect;
 	int			player;
 	int			exit;
+	int			vp_exit;
+	int			vp_colect;
+	t_point		ref;
+	t_comp		comp;
 }	t_map;
+
 
 typedef struct s_player
 {
@@ -37,6 +54,14 @@ char	read_map(const char *filename, t_map *data);
 // CHECK MAPS //
 void	check_map(t_map *data);
 bool	rectangular_map(t_map *map);
+bool	correct_characters(t_map *data);
+bool	surrounded_map(t_map *data);
+bool	valid_path(t_map *data);
+
+// UTILS //
+bool	ft_flood_fill(t_map *map, t_point ref, char **dupmap);
+void	free_dupmap(char **dupmap);
+int		ft_strchr_index(const char *s, int c);
 
 // START //
 void	start_game(char *filename);

@@ -6,7 +6,7 @@
 /*   By: alfreire <alfreire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 17:03:53 by alfreire          #+#    #+#             */
-/*   Updated: 2024/05/01 17:07:34 by alfreire         ###   ########.fr       */
+/*   Updated: 2024/05/08 20:38:30 by alfreire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,25 +25,23 @@
 // 	data.map = NULL;
 // }
 
-bool	rectangular_map(t_map *map)
+
+// i itera sobre as linhas do mapa, comeca na 0 e assim por diante
+bool	rectangular_map(t_map *data)
 {
-	char		**lines;
 	size_t		i;
 
-	lines = map->map;
-	if (lines[0])
-		map->colum = ft_strlen(lines[0]);
+	if (!data || !data->map || !data->map[0])
+		return (false);
+	data->colum = ft_strlen(data->map[0]);
 	i = 0;
-	while (lines[i] != NULL)
+	while (data->map[i] != NULL)
 	{
-		if (ft_strlen(lines[i]) != map->colum)
+		if (ft_strlen(data->map[i]) != data->colum)
 			return (false);
+		data->lines++;
 		i++;
 	}
-	map->lines = i;
-	while (lines[i++])
-		free(lines[i]);
-	free(lines);
 	return (true);
 }
 
@@ -54,15 +52,15 @@ bool	surrounded_map(t_map *data)
 
 	i = 0;
 	j = 0;
-
+	printf("AAAAAAAAAAAAAAAAAAAA%ld\n", data->lines);
 	while (i < data->lines)
 	{
-		if (i == 0 || i == data->lines - 2)
+		if (i == 0 || i == data->lines - 1)
 		{
 			j = 0;
 			printf("\n%zu\n", data->lines);
 			printf("\n%zu\n", data->colum);
-			while(j < data->colum - 1)
+			while(data->map[i][j])
 			{
 				if (data->map[i][j] != '1')
 					return (false);
@@ -78,13 +76,77 @@ bool	surrounded_map(t_map *data)
 	return (true);
 }
 
+bool	correct_characters(t_map *data)
+{
+	unsigned int		i;
+	unsigned int		j;
+
+	i = -1;
+	while (data->map[++i])
+	{
+		j = -1;
+		while(data->map[i][++j] && data->map[i][j]!= '\n')
+		{
+			if (data->map[i][j] == 'P')
+			{
+				data->ref.x = j;
+				data->ref.y = i;
+				data->player++;
+			}
+			else if (data->map[i][j] == 'E')
+				data->exit++;
+			else if (data->map[i][j] == 'C')
+				data->colect++;
+			else if (ft_strchr_index("CEP10", data->map[i][j]) == -1)
+				return (false);
+		}
+	}
+	return (data->colect >= 1 && data->player == 1
+			&& data->exit == 1);
+}
+
+bool	valid_path(t_map *data)
+{
+	char	**dupmap;
+	int		i;
+
+	dupmap = malloc(sizeof(char *) * (data->lines + 1));
+	if (!dupmap)
+		return (false);
+	i = -1;
+	while (i++ < (int)data->lines)
+	{
+		dupmap[i] = ft_strdup(data->map[i]);
+		if (!dupmap[i])
+		{
+			free_dupmap(dupmap);
+			return (false);
+		}
+	}
+	dupmap[i] = NULL;
+	ft_flood_fill(data, data->ref, dupmap);
+	free_dupmap(dupmap);
+	return (data->vp_colect == data->colect && data->vp_exit == data->exit);
+}
+
 void	check_map(t_map *data)
 {
     int i = 0;
-    while (data->map[i++])
-        printf("%s\n", data->map[i]);
+    while (data->map[i])
+	{
+	    printf("%s\n", data->map[i]);
+		i++;
+	}
 	if (!rectangular_map(data))
 		ft_putstr_fd("Error\nMap is not rectangular", 2);
 	if (!surrounded_map(data))
 		ft_putstr_fd("Error\nMap is not fully surrounded by walls", 2);
+	if (!correct_characters(data))
+		ft_putstr_fd("Error\nMap do not have all the neccessary characters", 2);
+	if (!valid_path(data))
+	{
+		printf("MAp path npt valid");
+		// ft_putstr_fd("Error\nMap path is not valid", 2);
+	}
+	free_dupmap(data->map);
 }

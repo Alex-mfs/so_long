@@ -6,7 +6,7 @@
 /*   By: alfreire <alfreire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 17:03:53 by alfreire          #+#    #+#             */
-/*   Updated: 2024/05/08 20:38:30 by alfreire         ###   ########.fr       */
+/*   Updated: 2024/05/09 16:08:16 by alfreire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,24 +108,29 @@ bool	correct_characters(t_map *data)
 bool	valid_path(t_map *data)
 {
 	char	**dupmap;
-	int		i;
+	size_t		i;
 
 	dupmap = malloc(sizeof(char *) * (data->lines + 1));
 	if (!dupmap)
+	{
+		ft_putstr_fd("eita", 2);
 		return (false);
-	i = -1;
-	while (i++ < (int)data->lines)
+	}
+	i = 0;
+	while (i < data->lines)
 	{
 		dupmap[i] = ft_strdup(data->map[i]);
 		if (!dupmap[i])
 		{
-			free_dupmap(dupmap);
+			free_mapmatrix(dupmap);
+			ft_putstr_fd("vish\n", 2);
 			return (false);
 		}
+		i++;
 	}
 	dupmap[i] = NULL;
 	ft_flood_fill(data, data->ref, dupmap);
-	free_dupmap(dupmap);
+	free_mapmatrix(dupmap);
 	return (data->vp_colect == data->colect && data->vp_exit == data->exit);
 }
 
@@ -144,9 +149,6 @@ void	check_map(t_map *data)
 	if (!correct_characters(data))
 		ft_putstr_fd("Error\nMap do not have all the neccessary characters", 2);
 	if (!valid_path(data))
-	{
-		printf("MAp path npt valid");
-		// ft_putstr_fd("Error\nMap path is not valid", 2);
-	}
-	free_dupmap(data->map);
+		ft_putstr_fd("Error\nMap path is not valid", 2);
+	free_mapmatrix(data->map);
 }

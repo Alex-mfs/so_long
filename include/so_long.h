@@ -59,8 +59,8 @@ bool	surrounded_map(t_map *data);
 bool	valid_path(t_map *data);
 
 // UTILS //
-bool	ft_flood_fill(t_map *map, t_point ref, char **dupmap);
-void	free_dupmap(char **dupmap);
+void	ft_flood_fill(t_map *map, t_point ref, char **dupmap);
+void	free_mapmatrix(char **dupmap);
 int		ft_strchr_index(const char *s, int c);
 
 // START //

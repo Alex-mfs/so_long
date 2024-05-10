@@ -6,7 +6,7 @@
 /*   By: alfreire <alfreire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 14:57:43 by alfreire          #+#    #+#             */
-/*   Updated: 2024/05/09 16:07:29 by alfreire         ###   ########.fr       */
+/*   Updated: 2024/05/10 15:46:41 by alfreire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,14 @@
 
 void ft_flood_fill(t_map *map, t_point ref, char **dupmap)
 {
-	if (ref.x < 0 || ref.y < 0 ||
-		ref.x > (int)map->colum - 1 || ref.y > (int)map->lines - 1 ||
-		dupmap[ref.y][ref.x] == 'V' || dupmap[ref.y][ref.x] == 1)
+	printf("player: ref.y%d, ref.x%d\n", ref.y, ref.x);
+	if (ref.x < 0 || ref.y < 0 \
+		|| ref.x > (int)map->colum - 1 || ref.y > (int)map->lines - 1 \
+		|| dupmap[ref.y][ref.x] == 'V' || dupmap[ref.y][ref.x] == '1')
 		return ;
-	else if (dupmap[ref.y][ref.x] == 'C')
+	if (dupmap[ref.y][ref.x] == 'C')
 		map->vp_colect++;
-	else if (dupmap[ref.y][ref.x] == 'E')
+	if (dupmap[ref.y][ref.x] == 'E')
 		map->vp_exit++;
 	dupmap[ref.y][ref.x] = 'V';
 	ft_flood_fill(map, (t_point){ref.x - 1, ref.y}, dupmap);

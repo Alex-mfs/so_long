@@ -6,7 +6,7 @@
 /*   By: alfreire <alfreire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 17:03:53 by alfreire          #+#    #+#             */
-/*   Updated: 2024/05/09 16:08:16 by alfreire         ###   ########.fr       */
+/*   Updated: 2024/05/10 15:39:39 by alfreire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,8 @@ bool	surrounded_map(t_map *data)
 
 bool	correct_characters(t_map *data)
 {
-	unsigned int		i;
-	unsigned int		j;
+	int		i;
+	int		j;
 
 	i = -1;
 	while (data->map[++i])
@@ -130,18 +130,18 @@ bool	valid_path(t_map *data)
 	}
 	dupmap[i] = NULL;
 	ft_flood_fill(data, data->ref, dupmap);
+    i = 0;
+	while (dupmap[i])
+	{
+	    printf("%s\n", dupmap[i]);
+		i++;
+	}
 	free_mapmatrix(dupmap);
 	return (data->vp_colect == data->colect && data->vp_exit == data->exit);
 }
 
 void	check_map(t_map *data)
 {
-    int i = 0;
-    while (data->map[i])
-	{
-	    printf("%s\n", data->map[i]);
-		i++;
-	}
 	if (!rectangular_map(data))
 		ft_putstr_fd("Error\nMap is not rectangular", 2);
 	if (!surrounded_map(data))

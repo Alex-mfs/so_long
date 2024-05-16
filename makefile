@@ -12,7 +12,7 @@ endif
 CC = gcc
 LDFLAGS = $(MLX_LIB) -L./libft -lft
 SRC_PATH = ./src/
-SRCS = $(SRC_PATH)main.c $(SRC_PATH)read_map.c $(SRC_PATH)utils.c $(SRC_PATH)check_maps.c $(SRC_PATH)start.c
+SRCS = $(SRC_PATH)main.c $(SRC_PATH)read_map.c $(SRC_PATH)utils.c $(SRC_PATH)check_maps.c $(SRC_PATH)start.c $(SRC_PATH)create_map.c $(SRC_PATH)erase.c
 OBJ = $(SRCS:.c=.o)
 NAME = so_long
 LIBFT = ./libft/libft.a

@@ -10,11 +10,39 @@
 
 # ifdef __APPLE__
 # include <Carbon/Carbon.h>
+#include <../minilibx_opengl/mlx.h>
 # elif defined(__linux__)
 # include <X11/keysym.h>
 # include <X11/X.h>
-
+# include <../minilibx-linux/mlx.h>
 # endif
+
+# define F "./assets/board.xpm"
+# define Wa "./assets/wall.xpm"
+# define P "./assets/player.xpm"
+# define C "./assets/collect.xpm"
+# define E "./assets/exit.xpm"
+
+# define PIX	64
+
+
+typedef enum e_index
+{
+	F1,
+	W1,
+	P1,
+	C1,
+	E1
+}			t_index;
+
+typedef	enum e_key
+{
+	ESC = 65307,
+	W = 119,
+	A = 97,
+	S = 115,
+	D = 100
+}			t_key;
 
 typedef struct s_point
 {
@@ -22,11 +50,26 @@ typedef struct s_point
 	int	y;
 }	t_point;
 
-typedef struct s_comp
+typedef struct s_disp
 {
-	int	colec;
-	int	exi;
-}	t_comp;
+	void	*mlx;
+	void	*win;
+	void	*img_ptr;
+	char	*addr;
+	int		bpp;
+	int		endian;
+	int		line_len;
+	int		height;
+	int		width;
+
+}	t_disp;
+
+typedef struct s_sprite
+{
+	void	*img;
+	int		width;
+	int		height;
+}	t_sprite;
 
 typedef struct s_map
 {
@@ -39,7 +82,9 @@ typedef struct s_map
 	int			vp_exit;
 	int			vp_colect;
 	t_point		ref;
-	t_comp		comp;
+	t_point		next;
+	t_disp		disp;
+	t_sprite	*sprt;
 }	t_map;
 
 
@@ -62,6 +107,13 @@ bool	valid_path(t_map *data);
 void	ft_flood_fill(t_map *map, t_point ref, char **dupmap);
 void	free_mapmatrix(char **dupmap);
 int		ft_strchr_index(const char *s, int c);
+void	fail_message(t_map *data, char *message);
+
+// ERASE //
+void	ft_destroy_data(t_map *data);
+
+// CREATE_MAP //
+void	create_map(t_map *data);
 
 // START //
 void	start_game(char *filename);

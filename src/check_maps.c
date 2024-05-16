@@ -6,7 +6,7 @@
 /*   By: alfreire <alfreire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 17:03:53 by alfreire          #+#    #+#             */
-/*   Updated: 2024/05/09 16:08:16 by alfreire         ###   ########.fr       */
+/*   Updated: 2024/05/15 15:14:59 by alfreire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,21 +52,17 @@ bool	surrounded_map(t_map *data)
 
 	i = 0;
 	j = 0;
-	printf("AAAAAAAAAAAAAAAAAAAA%ld\n", data->lines);
 	while (i < data->lines)
 	{
 		if (i == 0 || i == data->lines - 1)
 		{
 			j = 0;
-			printf("\n%zu\n", data->lines);
-			printf("\n%zu\n", data->colum);
 			while(data->map[i][j])
 			{
 				if (data->map[i][j] != '1')
 					return (false);
 				j++;
 			}
-			ft_putstr_fd("\na\n", 1);
 		}
 		else
 			if (data->map[i][0] != '1' || data->map[i][data->colum - 1] != '1')
@@ -112,10 +108,7 @@ bool	valid_path(t_map *data)
 
 	dupmap = malloc(sizeof(char *) * (data->lines + 1));
 	if (!dupmap)
-	{
-		ft_putstr_fd("eita", 2);
 		return (false);
-	}
 	i = 0;
 	while (i < data->lines)
 	{
@@ -123,7 +116,6 @@ bool	valid_path(t_map *data)
 		if (!dupmap[i])
 		{
 			free_mapmatrix(dupmap);
-			ft_putstr_fd("vish\n", 2);
 			return (false);
 		}
 		i++;
@@ -136,12 +128,6 @@ bool	valid_path(t_map *data)
 
 void	check_map(t_map *data)
 {
-    int i = 0;
-    while (data->map[i])
-	{
-	    printf("%s\n", data->map[i]);
-		i++;
-	}
 	if (!rectangular_map(data))
 		ft_putstr_fd("Error\nMap is not rectangular", 2);
 	if (!surrounded_map(data))
@@ -150,5 +136,5 @@ void	check_map(t_map *data)
 		ft_putstr_fd("Error\nMap do not have all the neccessary characters", 2);
 	if (!valid_path(data))
 		ft_putstr_fd("Error\nMap path is not valid", 2);
-	free_mapmatrix(data->map);
+	//free_mapmatrix(data->map);
 }

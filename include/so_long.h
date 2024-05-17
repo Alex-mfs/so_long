@@ -22,6 +22,8 @@
 # define P "./assets/player.xpm"
 # define C "./assets/collect.xpm"
 # define E "./assets/exit.xpm"
+# define EO "./assets/exit_open.xpm"
+# define EP "./assets/p_on_exit.xpm"
 
 # define PIX	64
 
@@ -32,7 +34,9 @@ typedef enum e_index
 	W1,
 	P1,
 	C1,
-	E1
+	E1,
+	E2,
+	E3
 }			t_index;
 
 typedef	enum e_key
@@ -76,11 +80,13 @@ typedef struct s_map
 	char		**map;
 	size_t		colum;
 	size_t		lines;
-	int			colect;
+	int			collect;
+	int			collected;
 	int			player;
 	int			exit;
 	int			vp_exit;
-	int			vp_colect;
+	int			vp_collect;
+	int			num_moves;
 	t_point		ref;
 	t_point		next;
 	t_disp		disp;
@@ -111,9 +117,11 @@ void	fail_message(t_map *data, char *message);
 
 // ERASE //
 void	ft_destroy_data(t_map *data);
+int	finish(t_map *data);
 
 // CREATE_MAP //
 void	create_map(t_map *data);
+int		create_game(t_map *data);
 
 // START //
 void	start_game(char *filename);

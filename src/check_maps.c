@@ -6,7 +6,7 @@
 /*   By: alfreire <alfreire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 17:03:53 by alfreire          #+#    #+#             */
-/*   Updated: 2024/05/15 15:14:59 by alfreire         ###   ########.fr       */
+/*   Updated: 2024/05/17 17:35:40 by alfreire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 // }
 // void	set_struct(t_map data)
 // {
-// 	data.colect = 0;
+// 	data.collect = 0;
 // 	data.colum = 0;
 // 	data.exit = 0;
 // 	data.lines = 0;
@@ -92,12 +92,12 @@ bool	correct_characters(t_map *data)
 			else if (data->map[i][j] == 'E')
 				data->exit++;
 			else if (data->map[i][j] == 'C')
-				data->colect++;
+				data->collect++;
 			else if (ft_strchr_index("CEP10", data->map[i][j]) == -1)
 				return (false);
 		}
 	}
-	return (data->colect >= 1 && data->player == 1
+	return (data->collect >= 1 && data->player == 1
 			&& data->exit == 1);
 }
 
@@ -123,7 +123,7 @@ bool	valid_path(t_map *data)
 	dupmap[i] = NULL;
 	ft_flood_fill(data, data->ref, dupmap);
 	free_mapmatrix(dupmap);
-	return (data->vp_colect == data->colect && data->vp_exit == data->exit);
+	return (data->vp_collect == data->collect && data->vp_exit == data->exit);
 }
 
 void	check_map(t_map *data)

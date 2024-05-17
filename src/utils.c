@@ -6,7 +6,7 @@
 /*   By: alfreire <alfreire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 14:57:43 by alfreire          #+#    #+#             */
-/*   Updated: 2024/05/15 14:47:27 by alfreire         ###   ########.fr       */
+/*   Updated: 2024/05/17 17:28:39 by alfreire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void ft_flood_fill(t_map *map, t_point ref, char **dupmap)
 		|| dupmap[ref.y][ref.x] == 'V' || dupmap[ref.y][ref.x] == '1')
 		return ;
 	else if (dupmap[ref.y][ref.x] == 'C')
-		map->vp_colect++;
+		map->vp_collect++;
 	else if (dupmap[ref.y][ref.x] == 'E')
 		map->vp_exit++;
 	dupmap[ref.y][ref.x] = 'V';

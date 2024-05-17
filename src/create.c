@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_map.c                                       :+:      :+:    :+:   */
+/*   create.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alfreire <alfreire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 20:00:04 by alfreire          #+#    #+#             */
-/*   Updated: 2024/05/16 14:14:57 by alfreire         ###   ########.fr       */
+/*   Updated: 2024/05/17 20:13:12 by alfreire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,53 @@ void	create_map(t_map *data)
 		}
 		i++;
 	}
+}
+
+void	player_movement(t_map *data)
+{
+	char	prev;
+	t_point	p;
+	
+	p = data->next;
+	prev = '0';
+	data->map[data->ref.y][data->ref.x] = prev;
+	if (data->map[p.y][p.x] != 'C')
+		prev = data->map[data->next.y][data->next.x];
+	else
+		prev = '0';
+	data->map[data->next.y][data->next.x] = 'P';
+	put_sprites(data, (t_point){data->ref.x, data->ref.y});
+	put_sprites(data, (t_point){data->next.x, data->next.y});
+	data->ref = data->next;
+}
+
+bool	can_move(t_map	*data)
+{
+	t_point	p;
+
+	p = data->next;
+	if (p.y == data->ref.y && p.x == data->ref.x)
+		return (false);
+	else if (data->map[p.y][p.x] == '1')
+		return (false);
+	return (true);
+}
+
+int		create_game(t_map *data)
+{
+	if (!can_move(data))
+		return (0);
+	ft_putstr_fd("Number of movements: ", 1);
+	data->num_moves++;
+	ft_putnbr_fd(data->num_moves, 1);
+	ft_putchar_fd('\n', 1);
+	if (data->map[data->next.y][data->next.x] == 'C')
+		data->collected++;
+	else if (data->map[data->next.y][data->next.x] == 'E'
+	{
+		if (data->collected == data->collect)
+			finish(data);
+	}
+	player_movement(data);
+	return (0);
 }

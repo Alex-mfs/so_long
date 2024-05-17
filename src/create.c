@@ -6,7 +6,7 @@
 /*   By: alfreire <alfreire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 20:00:04 by alfreire          #+#    #+#             */
-/*   Updated: 2024/05/17 20:13:12 by alfreire         ###   ########.fr       */
+/*   Updated: 2024/05/17 20:18:06 by alfreire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int		create_game(t_map *data)
 	ft_putchar_fd('\n', 1);
 	if (data->map[data->next.y][data->next.x] == 'C')
 		data->collected++;
-	else if (data->map[data->next.y][data->next.x] == 'E'
+	else if (data->map[data->next.y][data->next.x] == 'E')
 	{
 		if (data->collected == data->collect)
 			finish(data);

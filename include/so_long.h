@@ -87,6 +87,7 @@ typedef struct s_map
 	int			vp_exit;
 	int			vp_collect;
 	int			num_moves;
+	t_point		exit_pos;
 	t_point		ref;
 	t_point		next;
 	t_disp		disp;
@@ -114,6 +115,7 @@ void	ft_flood_fill(t_map *map, t_point ref, char **dupmap);
 void	free_mapmatrix(char **dupmap);
 int		ft_strchr_index(const char *s, int c);
 void	fail_message(t_map *data, char *message);
+void	player_on_exit(t_map *data, t_point pos);
 
 // ERASE //
 void	ft_destroy_data(t_map *data);

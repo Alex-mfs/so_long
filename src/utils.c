@@ -6,7 +6,7 @@
 /*   By: alfreire <alfreire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 14:57:43 by alfreire          #+#    #+#             */
-/*   Updated: 2024/05/17 17:28:39 by alfreire         ###   ########.fr       */
+/*   Updated: 2024/05/18 17:15:50 by alfreire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@ void ft_flood_fill(t_map *map, t_point ref, char **dupmap)
 	else if (dupmap[ref.y][ref.x] == 'C')
 		map->vp_collect++;
 	else if (dupmap[ref.y][ref.x] == 'E')
+	{
 		map->vp_exit++;
+		map->exit_pos = ref;
+	}
 	dupmap[ref.y][ref.x] = 'V';
 	ft_flood_fill(map, (t_point){ref.x + 1, ref.y}, dupmap);
 	ft_flood_fill(map, (t_point){ref.x - 1, ref.y}, dupmap);
@@ -68,7 +71,11 @@ void	fail_message(t_map *data, char *message)
 	exit(EXIT_FAILURE);
 }
 
-// void	error(t_map	*data, char	*text)
-// {
-// 	end_game(t_map	*game);
-// }
+void	player_on_exit(t_map *data, t_point pos)
+{
+	t_sprite	sprite;
+
+	sprite = data->sprt[E3];
+	mlx_put_image_to_window(data->disp.mlx, data->disp.win, sprite.img, \
+		(pos.x * PIX), (pos.y * PIX));
+}

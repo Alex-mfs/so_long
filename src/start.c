@@ -6,7 +6,7 @@
 /*   By: alfreire <alfreire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 17:04:21 by alfreire          #+#    #+#             */
-/*   Updated: 2024/05/17 20:12:05 by alfreire         ###   ########.fr       */
+/*   Updated: 2024/05/18 17:56:29 by alfreire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	launch_sprites(t_map *data)
 			&(data->sprt[E1].width), &(data->sprt[E1].height));
 	data->sprt[E2].img = mlx_xpm_file_to_image(data->disp.mlx, EO,
 			&(data->sprt[E2].width), &(data->sprt[E2].height));
-	data->sprt[E3].img = mlx_xpm_file_to_image(data->disp.mlx, EO,
+	data->sprt[E3].img = mlx_xpm_file_to_image(data->disp.mlx, EP,
 			&(data->sprt[E3].width), &(data->sprt[E3].height));
 }
 

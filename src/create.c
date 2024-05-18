@@ -6,7 +6,7 @@
 /*   By: alfreire <alfreire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 20:00:04 by alfreire          #+#    #+#             */
-/*   Updated: 2024/05/17 20:18:06 by alfreire         ###   ########.fr       */
+/*   Updated: 2024/05/18 17:59:22 by alfreire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,12 @@ void	put_sprites(t_map *data, t_point pos)
 	else if (data->map[pos.y][pos.x] == 'C')
 		sprite = data->sprt[C1];
 	else if (data->map[pos.y][pos.x] == 'E')
-		sprite = data->sprt[E1];
+	{
+		if (data->collect == data->collected)
+			sprite = data->sprt[E2];
+		else
+			sprite = data->sprt[E1];
+	}
 	else
 		sprite = data->sprt[F1];
 	mlx_put_image_to_window(data->disp.mlx, data->disp.win,\
@@ -53,11 +58,10 @@ void	create_map(t_map *data)
 
 void	player_movement(t_map *data)
 {
-	char	prev;
+	static char	prev = '0';
 	t_point	p;
 	
 	p = data->next;
-	prev = '0';
 	data->map[data->ref.y][data->ref.x] = prev;
 	if (data->map[p.y][p.x] != 'C')
 		prev = data->map[data->next.y][data->next.x];
@@ -91,9 +95,10 @@ int		create_game(t_map *data)
 	ft_putchar_fd('\n', 1);
 	if (data->map[data->next.y][data->next.x] == 'C')
 		data->collected++;
-	else if (data->map[data->next.y][data->next.x] == 'E')
+	if (data->collected == data->collect)
 	{
-		if (data->collected == data->collect)
+		put_sprites(data, data->exit_pos);
+		if (data->map[data->next.y][data->next.x] == 'E')
 			finish(data);
 	}
 	player_movement(data);

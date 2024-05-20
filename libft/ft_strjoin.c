@@ -6,13 +6,13 @@
 /*   By: alfreire <alfreire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 17:05:28 by alfreire          #+#    #+#             */
-/*   Updated: 2023/10/19 18:39:05 by alfreire         ###   ########.fr       */
+/*   Updated: 2024/05/20 16:48:56 by alfreire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char const *s2)
 {
 	char	*concate;
 	int		i;
@@ -36,5 +36,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		j++;
 	}
 	concate[i + j] = '\0';
+	free(s1);
 	return (concate);
 }

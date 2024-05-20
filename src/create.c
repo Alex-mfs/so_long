@@ -6,7 +6,7 @@
 /*   By: alfreire <alfreire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 20:00:04 by alfreire          #+#    #+#             */
-/*   Updated: 2024/05/18 17:59:22 by alfreire         ###   ########.fr       */
+/*   Updated: 2024/05/20 16:45:35 by alfreire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	create_map(t_map *data)
 	unsigned int	i;
 	unsigned int	j;
 
-	printf("a");
 	i = 0;
 	while(data->map[i])
 	{

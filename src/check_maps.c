@@ -6,7 +6,7 @@
 /*   By: alfreire <alfreire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 17:03:53 by alfreire          #+#    #+#             */
-/*   Updated: 2024/05/18 18:05:04 by alfreire         ###   ########.fr       */
+/*   Updated: 2024/05/20 17:12:12 by alfreire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,25 +122,20 @@ bool	valid_path(t_map *data)
 	}
 	dupmap[i] = NULL;
 	ft_flood_fill(data, data->ref, dupmap);
-    i = 0;
-	while (dupmap[i])
-	{
-	    printf("%s\n", dupmap[i]);
-		i++;
-	}
 	free_mapmatrix(dupmap);
 	return (data->vp_collect == data->collect && data->vp_exit == data->exit);
 }
 
 void	check_map(t_map *data)
 {
+	if (!data || !data->map || !data->map[0])
+		fail_message(data, "map is empty\n");
 	if (!rectangular_map(data))
-		ft_putstr_fd("Error\nMap is not rectangular", 2);
+		fail_message(data, "Map is not rectangular\n");
 	if (!surrounded_map(data))
-		ft_putstr_fd("Error\nMap is not fully surrounded by walls", 2);
+		fail_message(data, "Map is not fully surrounded by walls\n");
 	if (!correct_characters(data))
-		ft_putstr_fd("Error\nMap do not have all the neccessary characters", 2);
+		fail_message(data, "Map do not have all the neccessary characters\n");
 	if (!valid_path(data))
-		ft_putstr_fd("Error\nMap path is not valid", 2);
-	//free_mapmatrix(data->map);
+		fail_message(data, "Map path is not valid\n");
 }

@@ -6,7 +6,7 @@
 /*   By: alfreire <alfreire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 10:21:06 by alfreire          #+#    #+#             */
-/*   Updated: 2024/05/08 16:31:02 by alfreire         ###   ########.fr       */
+/*   Updated: 2024/05/20 17:30:16 by alfreire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 {
 	size_t	i;
 
-	if ((!dest && !src) /* || n == 0 */)
+	if ((!dest && !src))
 		return (NULL);
 	if ((size_t)dest - (size_t)src < n)
 	{

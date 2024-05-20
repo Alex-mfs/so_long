@@ -6,27 +6,12 @@
 /*   By: alfreire <alfreire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 17:03:53 by alfreire          #+#    #+#             */
-/*   Updated: 2024/05/20 17:12:12 by alfreire         ###   ########.fr       */
+/*   Updated: 2024/05/20 18:05:24 by alfreire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-// int		check_walls(t_map	map)
-// {
-// 	if ();
-// }
-// void	set_struct(t_map data)
-// {
-// 	data.collect = 0;
-// 	data.colum = 0;
-// 	data.exit = 0;
-// 	data.lines = 0;
-// 	data.map = NULL;
-// }
-
-
-// i itera sobre as linhas do mapa, comeca na 0 e assim por diante
 bool	rectangular_map(t_map *data)
 {
 	size_t		i;
@@ -57,7 +42,7 @@ bool	surrounded_map(t_map *data)
 		if (i == 0 || i == data->lines - 1)
 		{
 			j = 0;
-			while(data->map[i][j])
+			while (data->map[i][j])
 			{
 				if (data->map[i][j] != '1')
 					return (false);
@@ -81,7 +66,7 @@ bool	correct_characters(t_map *data)
 	while (data->map[++i])
 	{
 		j = -1;
-		while(data->map[i][++j] && data->map[i][j]!= '\n')
+		while (data->map[i][++j] && data->map[i][j] != '\n')
 		{
 			if (data->map[i][j] == 'P')
 			{
@@ -98,12 +83,12 @@ bool	correct_characters(t_map *data)
 		}
 	}
 	return (data->collect >= 1 && data->player == 1
-			&& data->exit == 1);
+		&& data->exit == 1);
 }
 
 bool	valid_path(t_map *data)
 {
-	char	**dupmap;
+	char		**dupmap;
 	size_t		i;
 
 	dupmap = malloc(sizeof(char *) * (data->lines + 1));

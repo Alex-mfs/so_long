@@ -6,7 +6,7 @@
 /*   By: alfreire <alfreire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 17:04:21 by alfreire          #+#    #+#             */
-/*   Updated: 2024/05/18 17:56:29 by alfreire         ###   ########.fr       */
+/*   Updated: 2024/05/20 18:32:49 by alfreire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	launch_sprites(t_map *data)
 		fail_message(data, "Image allocation error.\n");
 	data->sprt[F1].img = mlx_xpm_file_to_image(data->disp.mlx, F,
 			&(data->sprt[F1].width), &(data->sprt[F1].height));
-	data->sprt[W1].img = mlx_xpm_file_to_image(data->disp.mlx, Wa,
+	data->sprt[W1].img = mlx_xpm_file_to_image(data->disp.mlx, WA,
 			&(data->sprt[W1].width), &(data->sprt[W1].height));
 	data->sprt[P1].img = mlx_xpm_file_to_image(data->disp.mlx, P,
 			&(data->sprt[P1].width), &(data->sprt[P1].height));

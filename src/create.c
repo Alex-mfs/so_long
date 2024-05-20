@@ -6,7 +6,7 @@
 /*   By: alfreire <alfreire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 20:00:04 by alfreire          #+#    #+#             */
-/*   Updated: 2024/05/20 16:45:35 by alfreire         ###   ########.fr       */
+/*   Updated: 2024/05/20 18:08:09 by alfreire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	put_sprites(t_map *data, t_point pos)
 	}
 	else
 		sprite = data->sprt[F1];
-	mlx_put_image_to_window(data->disp.mlx, data->disp.win,\
+	mlx_put_image_to_window(data->disp.mlx, data->disp.win, \
 		sprite.img, (pos.x * PIX), (pos.y * PIX));
 }
 
@@ -43,7 +43,7 @@ void	create_map(t_map *data)
 	unsigned int	j;
 
 	i = 0;
-	while(data->map[i])
+	while (data->map[i])
 	{
 		j = 0;
 		while (data->map[i][j])
@@ -58,8 +58,8 @@ void	create_map(t_map *data)
 void	player_movement(t_map *data)
 {
 	static char	prev = '0';
-	t_point	p;
-	
+	t_point		p;
+
 	p = data->next;
 	data->map[data->ref.y][data->ref.x] = prev;
 	if (data->map[p.y][p.x] != 'C')
@@ -84,7 +84,7 @@ bool	can_move(t_map	*data)
 	return (true);
 }
 
-int		create_game(t_map *data)
+int	create_game(t_map *data)
 {
 	if (!can_move(data))
 		return (0);

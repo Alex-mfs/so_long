@@ -6,7 +6,7 @@
 /*   By: alfreire <alfreire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 13:24:52 by alfreire          #+#    #+#             */
-/*   Updated: 2024/05/20 16:49:15 by alfreire         ###   ########.fr       */
+/*   Updated: 2024/05/20 17:31:12 by alfreire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ void		ft_putstr_fd(char *s, int fd);
 void		ft_putendl_fd(char *s, int fd);
 void		ft_putnbr_fd(int n, int fd);
 
-
 // BONUS FUNCTIONS//
 
 typedef struct s_list
@@ -83,10 +82,10 @@ t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
 // GNL FUNCTIONS //
 
-char	*get_next_line(int fd);
-size_t	ft_strclen(const char *str, int c);
-char	*ft_strjoingnl(char *s1, char *s2);
-char	*ft_strchr_gnl(const char *str, int c);
-char	*ft_strldup(const char *src, size_t len);
+size_t		ft_strclen(const char *str, int c);
+char		*get_next_line(int fd);
+char		*ft_strjoingnl(char *s1, char *s2);
+char		*ft_strchr_gnl(const char *str, int c);
+char		*ft_strldup(const char *src, size_t len);
 
 #endif

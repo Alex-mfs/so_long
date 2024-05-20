@@ -1,24 +1,36 @@
-#ifndef SO_LONG_H
-#define SO_LONG_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alfreire <alfreire@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/20 17:25:33 by alfreire          #+#    #+#             */
+/*   Updated: 2024/05/20 17:29:21 by alfreire         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include <stdbool.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <fcntl.h>
-#include "../libft/libft.h"
+#ifndef SO_LONG_H
+# define SO_LONG_H
+
+# include <stdbool.h>
+# include <stdio.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <fcntl.h>
+# include "../libft/libft.h"
 
 # ifdef __APPLE__
-# include <Carbon/Carbon.h>
-#include <../minilibx_opengl/mlx.h>
+#  include <Carbon/Carbon.h>
+#  include <../minilibx_opengl/mlx.h>
 # elif defined(__linux__)
-# include <X11/keysym.h>
-# include <X11/X.h>
-# include <../minilibx-linux/mlx.h>
+#  include <X11/keysym.h>
+#  include <X11/X.h>
+#  include <../minilibx-linux/mlx.h>
 # endif
 
 # define F "./assets/board.xpm"
-# define Wa "./assets/wall.xpm"
+# define WA "./assets/wall.xpm"
 # define P "./assets/player.xpm"
 # define C "./assets/collect.xpm"
 # define E "./assets/exit.xpm"
@@ -26,7 +38,6 @@
 # define EP "./assets/p_on_exit.xpm"
 
 # define PIX	64
-
 
 typedef enum e_index
 {
@@ -39,7 +50,7 @@ typedef enum e_index
 	E3
 }			t_index;
 
-typedef	enum e_key
+typedef enum e_key
 {
 	ESC = 65307,
 	W = 119,
@@ -94,7 +105,6 @@ typedef struct s_map
 	t_sprite	*sprt;
 }	t_map;
 
-
 typedef struct s_player
 {
 	/* data */
@@ -119,7 +129,7 @@ void	player_on_exit(t_map *data, t_point pos);
 
 // ERASE //
 void	ft_destroy_data(t_map *data);
-int	finish(t_map *data);
+int		finish(t_map *data);
 
 // CREATE_MAP //
 void	create_map(t_map *data);

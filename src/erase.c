@@ -6,7 +6,7 @@
 /*   By: alfreire <alfreire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 15:56:25 by alfreire          #+#    #+#             */
-/*   Updated: 2024/05/20 17:04:09 by alfreire         ###   ########.fr       */
+/*   Updated: 2024/05/20 18:08:25 by alfreire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	sprite_destroy(t_map *data)
 	int	i;
 
 	i = 0;
-	while(i < 7)
+	while (i < 7)
 	{
 		mlx_destroy_image(data->disp.mlx, data->sprt[i++].img);
 	}

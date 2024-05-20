@@ -6,7 +6,7 @@
 /*   By: alfreire <alfreire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 17:06:35 by alfreire          #+#    #+#             */
-/*   Updated: 2024/05/20 17:11:54 by alfreire         ###   ########.fr       */
+/*   Updated: 2024/05/20 18:34:06 by alfreire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ char	read_map(const char *filename, t_map *data)
 	if (fd < 0)
 	{
 		fail_message(data, "file not found\n");
-		exit (EXIT_FAILURE);
 	}
 	line = get_next_line(fd);
 	while (line)

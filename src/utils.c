@@ -6,13 +6,13 @@
 /*   By: alfreire <alfreire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 14:57:43 by alfreire          #+#    #+#             */
-/*   Updated: 2024/05/18 18:05:35 by alfreire         ###   ########.fr       */
+/*   Updated: 2024/05/20 18:19:41 by alfreire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-void ft_flood_fill(t_map *map, t_point ref, char **dupmap)
+void	ft_flood_fill(t_map *map, t_point ref, char **dupmap)
 {
 	if (ref.x < 0 || ref.y < 0 \
 		|| ref.x > (int)map->colum - 1 || ref.y > (int)map->lines - 1 \
@@ -47,20 +47,20 @@ void	free_mapmatrix(char **dupmap)
 	free(dupmap);
 }
 
-int		ft_strchr_index(const char *s, int c)
+int	ft_strchr_index(const char *s, int c)
 {
-    int	i;
+	int		i;
 
-    i = 0;
+	i = 0;
 	if (!s)
 		return (-1);
-    while (s[i])
-    {
-        if (s[i] == (char)c)
-            return (i);
-        i++;
-    }
-    return (-1);
+	while (s[i])
+	{
+		if (s[i] == (char)c)
+			return (i);
+		i++;
+	}
+	return (-1);
 }
 
 void	fail_message(t_map *data, char *message)

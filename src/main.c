@@ -6,24 +6,11 @@
 /*   By: alfreire <alfreire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 17:04:06 by alfreire          #+#    #+#             */
-/*   Updated: 2024/04/29 16:24:33 by alfreire         ###   ########.fr       */
+/*   Updated: 2024/05/20 18:31:58 by alfreire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
-
-// if (all_collected && exit_count == 1)
-// 	return (map_valid);
-// if (on_wall)
-// 	return (map_invalid);
-// if (on_collectable)
-// 	collectables++;
-// if (on_exit)
-// 	exits++;
-// replace_current_position_with_wall;
-// if (one_of_the_four_adjacent_directions_is_possible)
-// 	return map_valid;
-// return map_valid;
 
 bool	valid_filename(char *filename)
 {
@@ -41,8 +28,8 @@ bool	valid_filename(char *filename)
 int	main(int ac, char **av)
 {
 	if (ac != 2)
-		return (EXIT_FAILURE);
+		fail_message(NULL, "Not a valid number of parameters.\n");
 	if (!valid_filename(av[1]))
-		return (EXIT_FAILURE);
+		fail_message(NULL, "Not a valid file name\n");
 	start_game(av[1]);
 }
